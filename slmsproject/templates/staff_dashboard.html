@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard | SLMS</title>
+    <link rel="stylesheet" href="{% static 'css/staff.css' %}">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <span class="logo-icon">📋</span> SLMS Staff
+        </div>
+        <a href="{% url 'logout' %}" class="logout-btn">
+            Logout
+        </a>
+    </nav>
+
+    <div class="dashboard">
+
+        <div class="welcome-section">
+            <div class="welcome-badge">
+                <span class="greeting-icon">👋</span>
+                <span class="greeting-text">Welcome back!</span>
+            </div>
+            <h1>Hello, {{ request.user.username }}</h1>
+            <p>Manage your leave requests effortlessly</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card card-apply">
+                <div class="card-icon">📝</div>
+                <h2>Apply Leave</h2>
+                <p>Submit a new leave request for approval</p>
+                <a href="{% url 'apply_leave' %}" class="btn btn-apply">
+                    Apply Now →
+                </a>
+            </div>
+
+            <div class="card card-status">
+                <div class="card-icon">📊</div>
+                <h2>My Leave Status</h2>
+                <p>View and track your leave requests</p>
+                <a href="{% url 'my_leaves' %}" class="btn btn-status">
+                    View Status →
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

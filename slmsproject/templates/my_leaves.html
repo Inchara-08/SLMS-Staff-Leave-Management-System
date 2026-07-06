@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Leave Status | SLMS</title>
+    <link rel="stylesheet" href="{% static 'css/my_leaves.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <div class="header-icon">📊</div>
+            <h1>My Leave Status</h1>
+            <p class="subtitle">Track your leave requests</p>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Leave Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in leaves %}
+                    <tr>
+                        <td>
+                            <span class="leave-type-icon">
+                                {% if i.leave_type == 'Casual Leave' %}🏖️
+                                {% elif i.leave_type == 'Sick Leave' %}🤒
+                                {% elif i.leave_type == 'Emergency Leave' %}🚨
+                                {% else %}📋
+                                {% endif %}
+                            </span>
+                            {{ i.leave_type }}
+                        </td>
+                        <td>{{ i.start_date }}</td>
+                        <td>{{ i.end_date }}</td>
+                        <td class="reason-cell">{{ i.reason }}</td>
+                        <td>
+                            {% if i.status == 'Pending' %}
+                                <span class="status-pending">
+                                    <span class="status-dot"></span> Pending
+                                </span>
+                            {% elif i.status == 'Approved' %}
+                                <span class="status-approved">
+                                    <span class="status-dot"></span> Approved
+                                </span>
+                            {% elif i.status == 'Rejected' %}
+                                <span class="status-rejected">
+                                    <span class="status-dot"></span> Rejected
+                                </span>
+                            {% else %}
+                                <span class="status-pending">{{ i.status }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            <span class="empty-icon">📭</span>
+                            No leave applications found
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="back-section">
+            <a href="{% url 'staff_dashboard' %}" class="back-btn">
+                <span class="arrow">←</span> Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

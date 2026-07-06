@@ -1,0 +1,427 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: #0a0a1a;
+    padding: 20px;
+}
+
+/* ===== BACKGROUND WITH GRADIENT OVERLAY ===== */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: 
+        linear-gradient(135deg, rgba(10, 10, 40, 0.75), rgba(30, 30, 80, 0.70)),
+        url("../image/register1.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+        radial-gradient(ellipse at 30% 40%, rgba(18, 72, 119, 0.829), transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(0, 242, 254, 0.10), transparent 50%);
+    pointer-events: none;
+    animation: pulseGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* ===== REGISTER CARD - GRADIENT TRANSPARENT GLASS ===== */
+.register-container {
+    width: 420px;
+    padding: 48px 44px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04));
+    backdrop-filter: blur(15px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(79, 6, 6, 0.06) inset,
+        0 0 60px rgba(79, 172, 254, 0.08);
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Decorative gradient glow on card */
+.register-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(ellipse at 70% 20%, rgba(79, 172, 254, 0.10), transparent 50%),
+        radial-gradient(ellipse at 30% 80%, rgba(0, 242, 254, 0.08), transparent 50%);
+    pointer-events: none;
+    animation: floatGlow 12s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    50% { transform: translate(-10px, -10px) rotate(-3deg) scale(1.05); }
+    100% { transform: translate(10px, 10px) rotate(3deg) scale(0.95); }
+}
+
+@keyframes slideUp {
+    0% { opacity: 0; transform: translateY(50px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ===== HEADINGS ===== */
+.register-container h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #ffffff 20%, #4facfe 70%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.register-container .subtitle {
+    font-size: 12px;
+    margin-bottom: 32px;
+    color: rgba(255, 255, 255, 0.50);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== FORM ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== LABELS ===== */
+label {
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 254, 254, 0.7);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+/* ===== INPUTS & SELECT ===== */
+input,
+select {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 8px;
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    backdrop-filter: blur(4px);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 48px;
+}
+
+select option {
+    background: #1a2a4a;
+    color: #ffffff;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.30);
+    font-weight: 300;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #4facfe;
+    background: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.08), 0 0 30px rgba(79, 172, 254, 0.05);
+}
+
+input:hover,
+select:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+input:focus:hover,
+select:focus:hover {
+    border-color: #4facfe;
+}
+
+/* ===== INFO TEXT ===== */
+.info-text {
+    color: rgba(255, 255, 255, 0.40);
+    font-size: 12px;
+    margin: 6px 0 16px 0;
+    line-height: 1.6;
+    text-align: left;
+    padding: 10px 14px;
+    background: rgba(79, 172, 254, 0.06);
+    border-radius: 10px;
+    border-left: 3px solid rgba(79, 172, 254, 0.30);
+}
+
+.info-text span {
+    margin-right: 6px;
+}
+
+/* ===== REGISTER BUTTON ===== */
+button {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 6px 35px rgba(79, 172, 254, 0.30);
+    margin-top: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.20), transparent);
+    transition: left 0.6s ease;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 10px 50px rgba(79, 172, 254, 0.45);
+    background: linear-gradient(135deg, #5fb9ff, #1af0fe);
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ===== LINKS ===== */
+.login-text {
+    margin-top: 22px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+}
+
+.login-text a {
+    text-decoration: none;
+    color: #4facfe;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.login-text a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    transition: width 0.3s ease;
+}
+
+.login-text a:hover {
+    color: #00f2fe;
+}
+
+.login-text a:hover::after {
+    width: 100%;
+}
+
+/* ===== BACK TO HOME LINK ===== */
+.home-link {
+    margin-top: 8px;
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+}
+
+.home-link a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.home-link a:hover {
+    color: rgba(255, 255, 255, 0.70);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 500px) {
+    .register-container {
+        width: 92%;
+        padding: 36px 28px;
+        border-radius: 22px;
+        margin: 0 16px;
+    }
+
+    .register-container h2 {
+        font-size: 28px;
+    }
+
+    .register-container .subtitle {
+        font-size: 10px;
+        letter-spacing: 3px;
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+    }
+
+    input,
+    select {
+        padding: 12px 16px;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    button {
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    label {
+        font-size: 11px;
+    }
+
+    .info-text {
+        font-size: 11px;
+        padding: 8px 12px;
+        margin: 4px 0 12px 0;
+    }
+
+    .login-text {
+        font-size: 13px;
+        margin-top: 18px;
+    }
+
+    .home-link {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .register-container {
+        padding: 28px 20px;
+    }
+
+    .register-container h2 {
+        font-size: 24px;
+    }
+
+    input,
+    select {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+
+/* ===== AUTOFILL FIX ===== */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px rgba(20, 30, 60, 0.90) inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border-color: #4facfe;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(79, 172, 254, 0.30);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 172, 254, 0.50);
+}

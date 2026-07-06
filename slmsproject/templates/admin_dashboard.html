@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body>
+
+    <div class="dashboard-container">
+
+        <div class="header">
+            <div class="header-left">
+    
+                <h1>Admin Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <span class="admin-badge">👑 Admin</span>
+                <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+            </div>
+        </div>
+
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <div class="welcome-badge">
+                <span class="greeting-icon">👋</span>
+                <span class="greeting-text">Welcome back!</span>
+            </div>
+            <h2>Hello, {{ request.user.username }}</h2>
+            <p>Here's what's happening with your leave management system</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-card stat-total">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <span class="stat-number">{{ total_leaves }}</span>
+                    <span class="stat-label">Total Leave Requests</span>
+                </div>
+            </div>
+            <div class="stat-card stat-pending">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-info">
+                    <span class="stat-number">{{ pending_leaves }}</span>
+                    <span class="stat-label">Pending Requests</span>
+                </div>
+            </div>
+            <div class="stat-card stat-approved">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <span class="stat-number">{{ approved_leaves }}</span>
+                    <span class="stat-label">Approved</span>
+                </div>
+            </div>
+            <div class="stat-card stat-rejected">
+                <div class="stat-icon">❌</div>
+                <div class="stat-info">
+                    <span class="stat-number">{{ rejected_leaves }}</span>
+                    <span class="stat-label">Rejected</span>
+                </div>
+            </div>
+            <div class="stat-card stat-staff">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <span class="stat-number">{{ total_staff }}</span>
+                    <span class="stat-label">Total Staff</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Action Cards -->
+        <div class="card-container">
+
+            <div class="card">
+                <div class="card-icon-wrapper">📋</div>
+                <h3>Leave Management</h3>
+                <p>View and manage all staff leave applications.</p>
+                <a href="{% url 'view_leaves' %}" class="btn">Manage Leaves</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon-wrapper">👥</div>
+                <h3>Staff Management</h3>
+                <p>View, add, edit and remove staff users.</p>
+                <a href="{% url 'manage_staff' %}" class="btn">Manage Staff</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

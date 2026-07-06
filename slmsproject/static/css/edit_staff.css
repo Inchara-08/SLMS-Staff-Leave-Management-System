@@ -1,0 +1,363 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a2e, #1a1a4e, #2a1a5e);
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== ANIMATED BACKGROUND EFFECT ===== */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: 
+        radial-gradient(ellipse at 20% 50%, rgba(79, 172, 254, 0.08), transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(0, 242, 254, 0.06), transparent 60%),
+        radial-gradient(ellipse at 50% 20%, rgba(138, 43, 226, 0.05), transparent 50%);
+    pointer-events: none;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+    max-width: 480px;
+    width: 100%;
+    margin: auto;
+    padding: 40px 45px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HEADING ===== */
+h1 {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 35px;
+    position: relative;
+    background: linear-gradient(135deg, #ffffff, #4facfe, #00f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    border-radius: 4px;
+}
+
+/* ===== FORM ===== */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* ===== FORM GROUP ===== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+}
+
+.form-group label {
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.30);
+    font-weight: 300;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4facfe;
+    background: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.08);
+}
+
+.form-group input:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.form-group input:focus:hover {
+    border-color: #4facfe;
+}
+
+/* ===== HELP TEXT ===== */
+.help-text {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    font-style: italic;
+    text-align: left;
+}
+
+/* ===== UPDATE BUTTON ===== */
+.update-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 6px 35px rgba(79, 172, 254, 0.35);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* Button shine effect */
+.update-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.20), transparent);
+    transition: left 0.6s ease;
+}
+
+.update-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 50px rgba(79, 172, 254, 0.50);
+    background: linear-gradient(135deg, #5fb9ff, #1af0fe);
+    color: #ffffff;
+}
+
+.update-btn:hover::before {
+    left: 100%;
+}
+
+.update-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.update-btn .icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.update-btn:hover .icon {
+    transform: rotate(45deg);
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    color: rgba(255, 255, 255, 0.70);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+    width: 100%;
+    margin-top: 12px;
+}
+
+.back-btn .arrow {
+    display: inline-block;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(0, 242, 254, 0.10));
+    border-color: rgba(79, 172, 254, 0.20);
+    box-shadow: 0 8px 30px rgba(79, 172, 254, 0.10);
+    color: rgba(255, 255, 255, 0.90);
+}
+
+.back-btn:hover .arrow {
+    transform: translateX(-6px);
+}
+
+.back-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .container {
+        padding: 30px 24px;
+        border-radius: 18px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 28px;
+    }
+
+    h1::after {
+        width: 60px;
+        height: 3px;
+        bottom: -8px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-group input {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .update-btn {
+        padding: 14px 28px;
+        font-size: 14px;
+    }
+
+    .back-btn {
+        padding: 12px 28px;
+        font-size: 13px;
+    }
+
+    .help-text {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 24px 18px;
+        border-radius: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h1::after {
+        width: 50px;
+        height: 2px;
+        bottom: -6px;
+    }
+
+    .form-group input {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    .update-btn {
+        padding: 12px 24px;
+        font-size: 13px;
+    }
+
+    .back-btn {
+        padding: 10px 24px;
+        font-size: 12px;
+    }
+}
+
+/* ===== AUTOFILL FIX ===== */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px rgba(20, 30, 60, 0.90) inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border-color: #4facfe;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(79, 172, 254, 0.30);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 172, 254, 0.50);
+}

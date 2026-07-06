@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLMS Login</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="login-container">
+
+        <h2>SLMS Login</h2>
+        <p class="subtitle">Staff Leave Management System</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter Username"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter Password"
+                required
+            >
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="register-text">
+            Don't have an account?
+            <a href="{% url 'register' %}">Register</a>
+        </p>
+
+    </div>
+
+</body>
+</html>
